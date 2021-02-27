@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Puppy adoption app</string>
+    <string name="title_activity_details">DetailsActivity</string>
+</resources>
