@@ -72,6 +72,8 @@ fun dogAgeText(dogAge: String) {
 @Composable
 fun loadImage(imageId: Int) {
 
+
+
     CoilImage(
        imageId,
         contentDescription = "",

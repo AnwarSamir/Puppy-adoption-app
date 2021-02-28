@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-android'
 }
 
+
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -23,21 +25,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     kotlinOptions {
         jvmTarget = '1.8'
         useIR = true
     }
     buildFeatures {
         compose true
+
+
+            // Disable unused AGP features
+            buildConfig false
+            aidl false
+            renderScript false
+            resValues false
+            shaders false
+
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.30'
+
     }
+
+
 }
 
 dependencies {
@@ -54,4 +64,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "dev.chrisbanes.accompanist:accompanist-coil:0.6.0"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+
 }
