@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+
 @Composable
 fun PuppyAdoption() {
     val context = LocalContext.current
