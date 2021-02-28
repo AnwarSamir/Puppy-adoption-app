@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package sa.waqood.puppyadoptionapp
 
 import android.content.Context
@@ -6,24 +21,29 @@ import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarDefaults.backgroundColor
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import sa.waqood.puppyadoptionapp.ui.data.ItemData
 import sa.waqood.puppyadoptionapp.ui.dogAgeText
@@ -44,12 +64,10 @@ class DetailsActivity : AppCompatActivity() {
 //                    Greeting(puppyData.toString())
 //                }
                 val puppyData = intent.getSerializableExtra("puppyData") as ItemData
-                ToolbarWidget(this, puppyData);
+                ToolbarWidget(this, puppyData)
             }
         }
     }
-
-
 }
 
 @Composable
@@ -75,9 +93,10 @@ fun ToolbarWidget(context: Context, puppyData: ItemData) {
                 navigationIcon = {
                     // navigation icon is use
                     // for drawer icon.
-                    IconButton(onClick = {
-
-                    }) {
+                    IconButton(
+                        onClick = {
+                        }
+                    ) {
                         // below line is use to
                         // specify navigation icon.
                         Icon(Icons.Filled.ArrowBack, "")
@@ -94,17 +113,18 @@ fun ToolbarWidget(context: Context, puppyData: ItemData) {
                 // elevation to our toolbar.
                 elevation = 12.dp
             )
-        }, content = {
+        },
+        content = {
             BuildView(puppyData)
-        })
-
+        }
+    )
 }
 
 @Composable
 fun BuildView(puppyData: ItemData) {
     Column() {
         puppyImage(puppyData.image)
-        Card(modifier = Modifier.padding(16.dp), elevation = 6.dp,shape = RoundedCornerShape(16.dp)) {
+        Card(modifier = Modifier.padding(16.dp), elevation = 6.dp, shape = RoundedCornerShape(16.dp)) {
             Column(modifier = Modifier.padding(16.dp)) {
                 dogNameText(dogName = puppyData.name)
                 dogAgeText(dogAge = puppyData.age)
@@ -112,17 +132,13 @@ fun BuildView(puppyData: ItemData) {
                 dogLongDescText(dogDesc = puppyData.description)
                 takeMeToHome()
             }
-
         }
-
     }
-
 }
-
 
 @Composable
 fun takeMeToHome() {
-    val context= LocalContext.current
+    val context = LocalContext.current
     Button(
         onClick = {
             Toast.makeText(context, "Thanks a lot ^_^ .. ", Toast.LENGTH_SHORT).show()
@@ -142,7 +158,7 @@ fun puppyImage(image: Int) {
     Image(
         painter = image,
         contentDescription = "",
-        contentScale = ContentScale.Crop,            // crop the image if it's not a square
+        contentScale = ContentScale.Crop, // crop the image if it's not a square
         modifier = Modifier
             .fillMaxWidth()
             .height(300.dp)
@@ -151,13 +167,3 @@ fun puppyImage(image: Int) {
 
     )
 }
-
-
-
-
-
-
-
-
-
-
